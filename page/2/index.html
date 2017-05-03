@@ -240,6 +240,130 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/HDU1530（最大团）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hnqw1214">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acmclub.win">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/03/HDU1530（最大团）/" itemprop="url">
+                  HDU1530（最大团）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T16:05:55+08:00">
+                2017-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Given a graph G(V, E), a clique is a sub-graph g(v, e), so that for all vertex pairs v1, v2 in v, there exists an edge (v1, v2) in e. Maximum clique is the clique that has maximum number of vertex.<br>问题描述：团就是最大完全子图。</p>
+<p>给定无向图G=(V,E)。如果UV，且对任意u，vU 有(u，v)  E，则称U 是G 的完全子图。</p>
+<p>G 的完全子图U是G的团当且仅当U不包含在G 的更大的完全子图中，即U就是最大完全子图。</p>
+<p>G 的最大团是指G中所含顶点数最多的团。</p>
+<p>这里可使用加入DP后的优化算法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n,path[<span class="number">61</span>][<span class="number">61</span>],s[<span class="number">61</span>],ans,dp[<span class="number">61</span>];</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_clique</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> end,<span class="keyword">const</span> <span class="keyword">int</span> point)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;end;i++)</div><div class="line">        <span class="keyword">if</span> (!path[s[i]][point]) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> depth,<span class="keyword">int</span> now)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (depth+n-now+<span class="number">1</span>&lt;=ans||depth+dp[now]&lt;=ans) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i=now;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (is_clique(depth+<span class="number">1</span>,i))</div><div class="line">        &#123;</div><div class="line">            s[depth+<span class="number">1</span>]=i;</div><div class="line">            dfs(depth+<span class="number">1</span>,i+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (depth&gt;ans) ans=depth;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (n==<span class="number">0</span>) <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">int</span> i,j;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">            <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;path[i][j]);</div><div class="line">        <span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</div><div class="line">        ans=<span class="number">0</span>;</div><div class="line">        dp[n]=<span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (i=n<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--)</div><div class="line">        &#123;</div><div class="line">            s[<span class="number">1</span>]=i;</div><div class="line">            dfs(<span class="number">1</span>,i+<span class="number">1</span>);</div><div class="line">            dp[i]=ans;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dp[<span class="number">1</span>]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/HDU1914（稳定婚姻）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -529,7 +653,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
