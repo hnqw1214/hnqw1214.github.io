@@ -240,6 +240,133 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/DNA-repair/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hnqw1214">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acmclub.win">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/03/DNA-repair/" itemprop="url">
+                  DNA repair
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T19:09:09+08:00">
+                2017-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h1><p>Biologists finally invent techniques of repairing DNA that contains segments causing kinds of inherited diseases. For the sake of simplicity, a DNA is represented as a string containing characters ‘A’, ‘G’ , ‘C’ and ‘T’. The repairing techniques are simply to change some characters to eliminate all segments causing diseases. For example, we can repair a DNA “AAGCAG” to “AGGCAC” to eliminate the initial causing disease segments “AAG”, “AGC” and “CAG” by changing two characters. Note that the repaired DNA can still contain only characters ‘A’, ‘G’, ‘C’ and ‘T’.</p>
+<p>You are to help the biologists to repair a DNA by changing least number of characters.</p>
+<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>The input consists of multiple test cases. Each test case starts with a line containing one integers N (1 ≤ N ≤ 50), which is the number of DNA segments causing inherited diseases. The following N lines gives N non-empty strings of length not greater than 20 containing only characters in “AGCT”, which are the DNA segments causing inherited disease. The last line of the test case is a non-empty string of length not greater than 1000 containing only characters in “AGCT”, which is the DNA to be repaired. The last test case is followed by a line containing one zeros.</p>
+<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>For each test case, print a line containing the test case number( beginning with 1) followed by the number of characters which need to be changed. If it’s impossible to repair the given DNA, print -1.</p>
+<h1 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h1><p>2<br>AAA<br>AAG<br>AAAG<br>2<br>A<br>TG<br>TGAATG<br>4<br>A<br>G<br>C<br>T<br>AGT<br>0</p>
+<h1 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h1><p>Case 1: 1<br>Case 2: 4<br>Case 3: -1</p>
+<h1 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h1><p>2008 Asia Hefei Regional Contest Online by USTC</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>对给出的得病的串进行自动机构造，dp[i][j]对应了走i步从根到达第j个节点的最小值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf = <span class="number">0x3f3f3f3f</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Trie</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> next[<span class="number">1010</span>][<span class="number">4</span>], fail[<span class="number">1010</span>];</div><div class="line">    <span class="keyword">int</span> end[<span class="number">1010</span>];</div><div class="line">    <span class="keyword">int</span> root, L;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">newNode</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</div><div class="line">            next[L][i] = <span class="number">-1</span>;</div><div class="line">        end[L++] = <span class="literal">false</span>;</div><div class="line">        <span class="keyword">return</span> L<span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</div><div class="line">        L = <span class="number">0</span>;</div><div class="line">        root = newNode();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getInt</span><span class="params">(<span class="keyword">char</span> ch)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (ch == <span class="string">'A'</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">'C'</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">'G'</span>) <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">'T'</span>) <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line">    &#125; </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> buf[])</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> len = <span class="built_in">strlen</span>(buf);</div><div class="line">        <span class="keyword">int</span> now = root;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (next[now][getInt(buf[i])] == <span class="number">-1</span>)</div><div class="line">                next[now][getInt(buf[i])] = newNode();</div><div class="line">            now = next[now][getInt(buf[i])];</div><div class="line">        &#125;</div><div class="line">        end[now] = <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; Q;</div><div class="line">        fail[root] = root;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (next[root][i] == <span class="number">-1</span>)</div><div class="line">                next[root][i] = root;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                fail[next[root][i]] = root;</div><div class="line">                Q.push(next[root][i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span> (!Q.empty()) &#123;</div><div class="line">            <span class="keyword">int</span> now = Q.front();</div><div class="line">            Q.pop();</div><div class="line">            <span class="keyword">if</span> (end[fail[now]]) end[now] = <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</div><div class="line">                <span class="keyword">if</span> (next[now][i] == <span class="number">-1</span>)</div><div class="line">                    next[now][i] = next[fail[now]][i];</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    fail[next[now][i]] = next[fail[now]][i];</div><div class="line">                    Q.push(next[now][i]);</div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> dp[<span class="number">1010</span>][<span class="number">1010</span>];</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span> buf[])</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> len = <span class="built_in">strlen</span>(buf);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len; i++)</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; L; j++)</div><div class="line">                dp[i][j] = inf;</div><div class="line">        </div><div class="line">        dp[<span class="number">0</span>][root] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; L; j++)</div><div class="line">                <span class="keyword">if</span> (dp[i][j] != inf) &#123;</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">4</span>; k++) &#123;</div><div class="line">                        <span class="keyword">int</span> news = next[j][k];</div><div class="line">                        <span class="keyword">if</span> (end[news]) <span class="keyword">continue</span>;</div><div class="line">                        <span class="keyword">int</span> tmp;</div><div class="line">                        <span class="keyword">if</span> (k == getInt(buf[i]))</div><div class="line">                            tmp = dp[i][j];</div><div class="line">                        <span class="keyword">else</span> tmp = dp[i][j] + <span class="number">1</span>;</div><div class="line">                        dp[i+<span class="number">1</span>][news] = min(dp[i+<span class="number">1</span>][news], tmp);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> ans = inf;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; L; j++)</div><div class="line">            ans = min(ans, dp[len][j]);</div><div class="line">        <span class="keyword">if</span> (ans == inf)</div><div class="line">            ans = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125; ac;</div><div class="line"><span class="keyword">char</span> buf[<span class="number">1010</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> n, cas = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n) != EOF &amp;&amp; n) &#123;</div><div class="line">        ac.init();</div><div class="line">        <span class="keyword">while</span> (n--) &#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>, buf);</div><div class="line">            ac.insert(buf);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        ac.build();</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>, buf);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %d\n"</span>, cas++, ac.solve(buf));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/考研路茫茫——单词情结-AC自动机-矩阵快速幂/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1421,153 +1548,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/组队训练2-回放-转载至cxhscst2-s-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hnqw1214">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="acmclub.win">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/03/组队训练2-回放-转载至cxhscst2-s-blog/" itemprop="url">
-                  组队训练2 回放(转载至cxhscst2's blog)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T17:57:58+08:00">
-                2017-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>2017/3/4  12:00-17:00</p>
-<p>Solve 9 / 13</p>
-<p>Penalty 717</p>
-<p>练习赛过程回放：</p>
-<p>开场5分中J题签到(cst)</p>
-<p>12分钟时qw签到A</p>
-<p>这时qw继续开写M，WA，检查代码。</p>
-<p>接着czy写B，cst在旁边检查，及时纠正可能导致爆int的错误。</p>
-<p>38分钟czy交C，1Y。</p>
-<p>三人一起查qw的M，43分钟时提交，2Y。</p>
-<p>qw推出了E的公式，一开始WA了一发，70分钟2Y。</p>
-<p>cst和czy讨论F，同时qw继续敲D， 92分钟2Y。</p>
-<p>czy上来搞F，第一发WA。</p>
-<p>czy下去查错，cst上来敲C(四面体体积公式)，104分钟，1Y。</p>
-<p>czy改错之后，继续交了一发，OLE(交成了I题)， WA(第二发F题)</p>
-<p>同时cst思考L，发现是个KM的模板题。</p>
-<p>cst开敲L，124分钟，1Y。</p>
-<p>czy重新做了F，第125分钟提交，3Y。</p>
-<p>第二次训练cst总结：</p>
-<p>第二次的AC率比第一次训练高了很多。</p>
-<p>这次做的三道题都是1Y(当然题目简单，不坑也有关系)</p>
-<p>两次训练下来发现qw比较适合前期主写代码。</p>
-<p>因为这两次题目较简单，所以后期的情况暂时看不出来。</p>
-<p>第二次训练qw总结：</p>
-<p>确实，第二次的状态相比第一次好了很多。</p>
-<p>不过因为题目简单，后面几道题又没有思路，所以2个小时后挂机。</p>
-<p>还是有一些不应该的罚时，比如一道模拟题一开始又是n和m搞错了，所以WA了一发，没有做到1Y。</p>
-<p>前期在签到时不仅要手速快，细节也要注意，避免不必要的罚时。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1617,7 +1597,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
