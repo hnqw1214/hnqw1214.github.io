@@ -240,6 +240,161 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/Codeforces-777D-Cloud-of-Hashtags-贪心/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hnqw1214">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acmclub.win">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/03/Codeforces-777D-Cloud-of-Hashtags-贪心/" itemprop="url">
+                  Codeforces 777D Cloud of Hashtags(贪心)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T17:44:13+08:00">
+                2017-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Vasya is an administrator of a public page of organization “Mouse and keyboard” and his everyday duty is to publish news from the world of competitive programming. For each news he also creates a list of hashtags to make searching for a particular topic more comfortable. For the purpose of this problem we define hashtag as a string consisting of lowercase English letters and exactly one symbol ‘#’ located at the beginning of the string. The length of the hashtag is defined as the number of symbols in it without the symbol ‘#’.</p>
+<p>The head administrator of the page told Vasya that hashtags should go in lexicographical order (take a look at the notes section for the definition).</p>
+<p>Vasya is lazy so he doesn’t want to actually change the order of hashtags in already published news. Instead, he decided to delete some suffixes (consecutive characters at the end of the string) of some of the hashtags. He is allowed to delete any number of characters, even the whole string except for the symbol ‘#’. Vasya wants to pick such a way to delete suffixes that the total number of deleted symbols is minimum possible. If there are several optimal solutions, he is fine with any of them.</p>
+<p>Input<br>The first line of the input contains a single integer n (1 ≤ n ≤ 500 000) — the number of hashtags being edited now.</p>
+<p>Each of the next n lines contains exactly one hashtag of positive length.</p>
+<p>It is guaranteed that the total length of all hashtags (i.e. the total length of the string except for characters ‘#’) won’t exceed 500 000.</p>
+<p>Output<br>Print the resulting hashtags in any of the optimal solutions.</p>
+<p>Examples<br>input<br>3</p>
+<p>#book</p>
+<p>#bigtown</p>
+<p>#big<br>output</p>
+<p>#b</p>
+<p>#big</p>
+<p>#big<br>input<br>3</p>
+<p>#book</p>
+<p>#cool</p>
+<p>#cold<br>output</p>
+<p>#book</p>
+<p>#co</p>
+<p>#cold<br>input<br>4</p>
+<p>#car</p>
+<p>#cart</p>
+<p>#art</p>
+<p>#at<br>output<br>#<br>#</p>
+<p>#art</p>
+<p>#at<br>input<br>3</p>
+<p>#apple</p>
+<p>#apple</p>
+<p>#fruit<br>output</p>
+<p>#apple</p>
+<p>#apple</p>
+<p>#fruit<br>Note<br>Word a1, a2, …, am of length m is lexicographically not greater than word b1, b2, …, bk of length k, if one of two conditions hold: </p>
+<p>at first position i, such that ai ≠ bi, the character ai goes earlier in the alphabet than character bi, i.e. a has smaller character than bin the first position where they differ;<br>if there is no such position i and m ≤ k, i.e. the first word is a prefix of the second or two words are equal.<br>The sequence of words is said to be sorted in lexicographical order if each word (except the last one) is lexicographically not greater than the next word.</p>
+<p>For the words consisting of lowercase English letters the lexicographical order coincides with the alphabet word order in the dictionary.</p>
+<p>According to the above definition, if a hashtag consisting of one character ‘#’ it is lexicographically not greater than any other valid hashtag. That’s why in the third sample we can’t keep first two hashtags unchanged and shorten the other two.</p>
+<p>题目还是比较简单的。考虑一个单词删掉得越多，在字典里面的顺序越前面。因此可以从后忘前扫，每个单词尽可能删掉最少使之小于下一个单词。当然在比赛时太依赖STL中的erase了，所以FST了。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n,len=<span class="number">0</span>;</div><div class="line"><span class="built_in">string</span> s[<span class="number">500001</span>],ans[<span class="number">500001</span>];</div><div class="line"><span class="keyword">char</span> c[<span class="number">500001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,c);</div><div class="line">        s[i].assign(c);</div><div class="line">    &#125;</div><div class="line">    ans[n]=s[n];</div><div class="line">    <span class="keyword">for</span> (i=n<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (s[i]&lt;=ans[i+<span class="number">1</span>]) </div><div class="line">        &#123;</div><div class="line">            ans[i]=s[i];</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> j,p;</div><div class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;s[i].size();j++)</div><div class="line">            <span class="keyword">if</span> (s[i][j]&gt;ans[i+<span class="number">1</span>][j])</div><div class="line">            &#123;</div><div class="line">                p=j;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        ans[i]=<span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;p;k++) ans[i]+=s[i][k];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,ans[i].c_str());</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/Codeforces-761E（DFS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2639,127 +2794,6 @@ printf(&quot;%d\n&quot;,a[n]);
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/HDU1914（稳定婚姻）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hnqw1214">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="acmclub.win">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/03/HDU1914（稳定婚姻）/" itemprop="url">
-                  HDU1914（稳定婚姻）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T16:00:06+08:00">
-                2017-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[题目链接]<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1914" target="_blank" rel="external">http://acm.hdu.edu.cn/showproblem.php?pid=1914</a></p>
-<p>思路：Gale-Shapley算法。算法过程是男士不停地求婚，女士不停地拒绝。在每一轮中，每个尚未订婚的男士在他还没有求过婚的女士中选一个自己最喜欢的求婚（不管她有没有订婚）。然后每个女士在向她求婚的人之中选择她最喜欢的一个订婚，并且拒绝其他人。注意，这些向她求婚的人中包含她的未婚夫，因此她可以选择另一个自己更喜欢的人订婚，而抛弃自己的现任未婚夫。这个算法的结果是使男士都能娶到自己有可能娶到的最好的妻子，所以是对男士的理想配对。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">male</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> f,rev[<span class="number">41</span>],tag;</div><div class="line">&#125; m[<span class="number">41</span>];</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">female</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> tag,temp,val,wait[<span class="number">41</span>];</div><div class="line">&#125; f[<span class="number">41</span>];</div><div class="line"><span class="keyword">int</span> _,n,t,k,mf[<span class="number">41</span>][<span class="number">41</span>],fm[<span class="number">41</span>][<span class="number">41</span>];</div><div class="line"><span class="keyword">char</span> ch[<span class="number">41</span>];</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ok</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)</div><div class="line">        <span class="keyword">if</span> (m[i].f==<span class="number">0</span>&amp;&amp;m[i].tag&gt;<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;_);</div><div class="line">    <span class="keyword">while</span> (_--)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">        <span class="keyword">int</span> i,j;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)</div><div class="line">        &#123;</div><div class="line">            f[i].tag=<span class="number">0</span>;</div><div class="line">            m[i].tag=<span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</div><div class="line">            t=ch[<span class="number">0</span>]-<span class="string">'a'</span>+<span class="number">1</span>;</div><div class="line">            m[t].f=<span class="number">0</span>;</div><div class="line">            m[t].tag=t;</div><div class="line">            <span class="built_in">memset</span>(m[t].rev,<span class="number">0</span>,<span class="keyword">sizeof</span>(m[t].rev));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</div><div class="line">            t=ch[<span class="number">0</span>]-<span class="string">'A'</span>+<span class="number">1</span>;</div><div class="line">            f[t].tag=t;</div><div class="line">            f[t].temp=<span class="number">0</span>;</div><div class="line">            f[t].val=<span class="number">30</span>;</div><div class="line">            <span class="built_in">memset</span>(f[t].wait,<span class="number">0</span>,<span class="keyword">sizeof</span>(f[i].wait));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</div><div class="line">            t=ch[<span class="number">0</span>]-<span class="string">'a'</span>+<span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span> (j=<span class="number">2</span>;j&lt;=n+<span class="number">1</span>;j++)</div><div class="line">                mf[t][j<span class="number">-1</span>]=ch[j]-<span class="string">'A'</span>+<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        &#123;</div><div class="line">            <span class="comment">//cout&lt;&lt;1;</span></div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</div><div class="line">            t=ch[<span class="number">0</span>]-<span class="string">'A'</span>+<span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span> (j=<span class="number">2</span>;j&lt;=n+<span class="number">1</span>;j++)</div><div class="line">                fm[t][j<span class="number">-1</span>]=ch[j]-<span class="string">'a'</span>+<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//cout&lt;&lt;"hhhhhhh"&lt;&lt;endl;</span></div><div class="line">        <span class="keyword">while</span> (ok())</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span> (m[i].f==<span class="number">0</span>&amp;&amp;m[i].tag&gt;<span class="number">0</span>)</div><div class="line">                &#123;</div><div class="line">                    <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">                    &#123;</div><div class="line">                        t=mf[i][j];</div><div class="line">                        <span class="keyword">if</span> (m[i].rev[t]==<span class="number">0</span>)</div><div class="line">                        &#123;</div><div class="line">                            m[i].rev[t]=<span class="number">1</span>;</div><div class="line">                            m[i].f=<span class="number">1</span>;</div><div class="line">                            k=++f[t].wait[<span class="number">0</span>];</div><div class="line">                            f[t].wait[k]=i;</div><div class="line">                            <span class="keyword">break</span>;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span> (f[i].tag&gt;<span class="number">0</span>)</div><div class="line">                &#123;</div><div class="line">                    <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=f[i].wait[<span class="number">0</span>];j++)</div><div class="line">                    &#123;</div><div class="line">                        t=f[i].wait[j];</div><div class="line">                        <span class="keyword">for</span> (k=<span class="number">1</span>;k&lt;=n;k++)</div><div class="line">                            <span class="keyword">if</span> (fm[i][k]==t) <span class="keyword">break</span>;</div><div class="line">                        <span class="keyword">if</span> (f[i].val&gt;k)</div><div class="line">                        &#123;</div><div class="line">                            m[f[i].temp].f=<span class="number">0</span>;</div><div class="line">                            f[i].temp=t;</div><div class="line">                            f[i].val=k;</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">else</span> m[t].f=<span class="number">0</span>;</div><div class="line">                    &#125;</div><div class="line">                    f[i].wait[<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> out[<span class="number">41</span>];</div><div class="line">        <span class="built_in">memset</span>(out,<span class="number">0</span>,<span class="keyword">sizeof</span>(out));</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)</div><div class="line">            <span class="keyword">if</span> (f[i].tag&gt;<span class="number">0</span>)</div><div class="line">            &#123;</div><div class="line">                j=f[i].temp;</div><div class="line">                out[j]=i;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)</div><div class="line">            <span class="keyword">if</span> (out[i]) <span class="built_in">printf</span>(<span class="string">"%c %c\n"</span>,i<span class="number">-1</span>+<span class="string">'a'</span>,out[i]<span class="number">-1</span>+<span class="string">'A'</span>);</div><div class="line">        <span class="keyword">if</span> (_) <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2809,7 +2843,7 @@ printf(&quot;%d\n&quot;,a[n]);
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
