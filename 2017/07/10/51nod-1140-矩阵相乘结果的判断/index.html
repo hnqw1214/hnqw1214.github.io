@@ -1,0 +1,665 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="题目给出三个NN的矩阵A, B, C，问A  B是否等于C？ Input第1行，1个数N。(0 &amp;lt;= N &amp;lt;= 500)第2 - N + 1行：每行N个数，对应矩阵A的元素。（0 &amp;lt;= M[i] &amp;lt;= 16)第N + 2 - 2N + 1行：每行N个数，对应矩阵B的元素。（0 &amp;lt;= M[i] &amp;lt;= 16)第2N + 2 - 3N + 1行：每行N个数，对应矩阵C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="51nod 1140 矩阵相乘结果的判断">
+<meta property="og:url" content="http://yoursite.com/2017/07/10/51nod-1140-矩阵相乘结果的判断/index.html">
+<meta property="og:site_name" content="acmclub.win">
+<meta property="og:description" content="题目给出三个NN的矩阵A, B, C，问A  B是否等于C？ Input第1行，1个数N。(0 &amp;lt;= N &amp;lt;= 500)第2 - N + 1行：每行N个数，对应矩阵A的元素。（0 &amp;lt;= M[i] &amp;lt;= 16)第N + 2 - 2N + 1行：每行N个数，对应矩阵B的元素。（0 &amp;lt;= M[i] &amp;lt;= 16)第2N + 2 - 3N + 1行：每行N个数，对应矩阵C">
+<meta property="og:updated_time" content="2017-07-10T08:01:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="51nod 1140 矩阵相乘结果的判断">
+<meta name="twitter:description" content="题目给出三个NN的矩阵A, B, C，问A  B是否等于C？ Input第1行，1个数N。(0 &amp;lt;= N &amp;lt;= 500)第2 - N + 1行：每行N个数，对应矩阵A的元素。（0 &amp;lt;= M[i] &amp;lt;= 16)第N + 2 - 2N + 1行：每行N个数，对应矩阵B的元素。（0 &amp;lt;= M[i] &amp;lt;= 16)第2N + 2 - 3N + 1行：每行N个数，对应矩阵C">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/10/51nod-1140-矩阵相乘结果的判断/"/>
+
+
+
+
+
+  <title>51nod 1140 矩阵相乘结果的判断 | acmclub.win</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">acmclub.win</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-/"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-/archives"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/10/51nod-1140-矩阵相乘结果的判断/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hnqw1214">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acmclub.win">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                51nod 1140 矩阵相乘结果的判断
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T15:56:52+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给出三个N<em>N的矩阵A, B, C，问A </em> B是否等于C？</p>
+<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>第1行，1个数N。(0 &lt;= N &lt;= 500)<br>第2 - N + 1行：每行N个数，对应矩阵A的元素。（0 &lt;= M[i] &lt;= 16)<br>第N + 2 - 2N + 1行：每行N个数，对应矩阵B的元素。（0 &lt;= M[i] &lt;= 16)<br>第2N + 2 - 3N + 1行：每行N个数，对应矩阵C的元素。</p>
+<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>如果相等输出Yes，否则输出No。</p>
+<h1 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h1><p>2<br>1 0<br>0 1<br>0 1<br>1 0<br>0 1<br>1 0</p>
+<h1 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h1><p>Yes</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>显然，500<em>500</em>500会超时，因此考虑矩阵乘法的结合律，随机产生一个1<em>n的矩阵，A</em>B=C等价于X<em>A</em>B=X<em>C，而计算X</em>A<em>B和X</em>C的复杂度仅n*n。为了确保正确，需多随机出几个矩阵<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n,a[<span class="number">510</span>][<span class="number">510</span>],b[<span class="number">510</span>][<span class="number">510</span>],c[<span class="number">510</span>][<span class="number">510</span>],x[<span class="number">510</span>],t[<span class="number">510</span>],u[<span class="number">510</span>],v[<span class="number">510</span>];</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">calc</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> i,j;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">			x[i]=rand()%<span class="number">1000</span>;</div><div class="line">	<span class="built_in">memset</span>(t,<span class="number">0</span>,<span class="keyword">sizeof</span>(t));</div><div class="line">	<span class="built_in">memset</span>(u,<span class="number">0</span>,<span class="keyword">sizeof</span>(u));</div><div class="line">	<span class="built_in">memset</span>(v,<span class="number">0</span>,<span class="keyword">sizeof</span>(v));</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">			t[i]+=x[j]*a[j][i];</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">			u[i]+=t[j]*b[j][i];</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">			v[i]+=x[j]*c[j][i];</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		<span class="keyword">if</span> (u[i]!=v[i]) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	srand(<span class="keyword">int</span>(time(<span class="number">0</span>)));</div><div class="line">	<span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n))</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> i,j;</div><div class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">			<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i][j]);</div><div class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">			<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;b[i][j]);</div><div class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">			<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;c[i][j]);</div><div class="line">		<span class="keyword">bool</span> can=<span class="literal">true</span>;</div><div class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">4</span>;i++)</div><div class="line">			<span class="keyword">if</span> (!calc())</div><div class="line">			&#123;</div><div class="line">				can=<span class="literal">false</span>;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		<span class="keyword">if</span> (can) <span class="built_in">puts</span>(<span class="string">"Yes"</span>);</div><div class="line">		<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/10/51nod-1055最长等差数列/" rel="next" title="51nod 1055最长等差数列">
+                <i class="fa fa-chevron-left"></i> 51nod 1055最长等差数列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg"
+               alt="hnqw1214" />
+          <p class="site-author-name" itemprop="name">hnqw1214</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input示例"><span class="nav-number">4.</span> <span class="nav-text">Input示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output示例"><span class="nav-number">5.</span> <span class="nav-text">Output示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">6.</span> <span class="nav-text">思路</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hnqw1214</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
