@@ -240,6 +240,137 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/Codeforces-618C（计算几何）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hnqw1214">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acmclub.win">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/03/Codeforces-618C（计算几何）/" itemprop="url">
+                  Codeforces 618C（计算几何）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T18:01:24+08:00">
+                2017-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Cat Noku has obtained a map of the night sky. On this map, he found a constellation with n stars numbered from 1 to n. For each i, the i-th star is located at coordinates (xi, yi). No two stars are located at the same position.</p>
+<p>In the evening Noku is going to take a look at the night sky. He would like to find three distinct stars and form a triangle. The triangle must have positive area. In addition, all other stars must lie strictly outside of this triangle. He is having trouble finding the answer and would like your help. Your job is to find the indices of three stars that would form a triangle that satisfies all the conditions. </p>
+<p>It is guaranteed that there is no line such that all stars lie on that line. It can be proven that if the previous condition is satisfied, there exists a solution to this problem.</p>
+<p>Input<br>The first line of the input contains a single integer n (3 ≤ n ≤ 100 000).</p>
+<p>Each of the next n lines contains two integers xi and yi ( - 109 ≤ xi, yi ≤ 109).</p>
+<p>It is guaranteed that no two stars lie at the same point, and there does not exist a line such that all stars lie on that line.</p>
+<p>Output<br>Print three distinct integers on a single line — the indices of the three points that form a triangle that satisfies the conditions stated in the problem.</p>
+<p>If there are multiple possible answers, you may print any of them.</p>
+<p>Examples<br>input<br>3<br>0 1<br>1 0<br>1 1<br>output<br>1 2 3<br>input<br>5<br>0 0<br>0 2<br>2 0<br>2 2<br>1 1<br>output<br>1 3 5<br>Note that the triangle formed by starts 1, 4 and 3 doesn’t satisfy the conditions stated in the problem, as point 5 is not strictly outside of this triangle (it lies on it’s border).</p>
+<p>题意：给定一些点，选三个点构成三角形，别的点都在三角形外。</p>
+<p>做法：按x为关键字，y为次关键字将所有的点排序，选定1，2两个点，枚举第3个点判断是否能构成三角形。<br>In the first sample, we can print the three indices in any order.</p>
+<p>In the second sample, we have the following picture.<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ss</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> x,y,id;</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(ss a,ss b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> (a.x&lt;b.x||a.x==b.x&amp;&amp;a.y&lt;b.y);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(ss a,ss b,ss c)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1l</span>l*(c.x-a.x)*(b.y-a.y)<span class="number">-1l</span>l*(c.y-a.y)*(b.x-a.x)!=<span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> n;</div><div class="line">ss a[<span class="number">100001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;a[i].x,&amp;a[i].y),a[i].id=i;</div><div class="line">    sort(a+<span class="number">1</span>,a+n+<span class="number">1</span>,cmp);</div><div class="line">    <span class="comment">//for (i=1;i&lt;=n;i++)</span></div><div class="line">    <span class="comment">//        printf("%d %d\n",a[i].x,a[i].y);</span></div><div class="line">    <span class="keyword">for</span> (i=<span class="number">3</span>;i&lt;=n;i++)</div><div class="line">        <span class="keyword">if</span> (check(a[<span class="number">1</span>],a[<span class="number">2</span>],a[i]))</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%lld %lld %lld\n"</span>,a[<span class="number">1</span>].id,a[<span class="number">2</span>].id,a[i].id);</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/Codeforces-559A（计算几何）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1417,161 +1548,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/Codeforces-777D-Cloud-of-Hashtags-贪心/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hnqw1214">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="acmclub.win">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/03/Codeforces-777D-Cloud-of-Hashtags-贪心/" itemprop="url">
-                  Codeforces 777D Cloud of Hashtags(贪心)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T17:44:13+08:00">
-                2017-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Vasya is an administrator of a public page of organization “Mouse and keyboard” and his everyday duty is to publish news from the world of competitive programming. For each news he also creates a list of hashtags to make searching for a particular topic more comfortable. For the purpose of this problem we define hashtag as a string consisting of lowercase English letters and exactly one symbol ‘#’ located at the beginning of the string. The length of the hashtag is defined as the number of symbols in it without the symbol ‘#’.</p>
-<p>The head administrator of the page told Vasya that hashtags should go in lexicographical order (take a look at the notes section for the definition).</p>
-<p>Vasya is lazy so he doesn’t want to actually change the order of hashtags in already published news. Instead, he decided to delete some suffixes (consecutive characters at the end of the string) of some of the hashtags. He is allowed to delete any number of characters, even the whole string except for the symbol ‘#’. Vasya wants to pick such a way to delete suffixes that the total number of deleted symbols is minimum possible. If there are several optimal solutions, he is fine with any of them.</p>
-<p>Input<br>The first line of the input contains a single integer n (1 ≤ n ≤ 500 000) — the number of hashtags being edited now.</p>
-<p>Each of the next n lines contains exactly one hashtag of positive length.</p>
-<p>It is guaranteed that the total length of all hashtags (i.e. the total length of the string except for characters ‘#’) won’t exceed 500 000.</p>
-<p>Output<br>Print the resulting hashtags in any of the optimal solutions.</p>
-<p>Examples<br>input<br>3</p>
-<p>#book</p>
-<p>#bigtown</p>
-<p>#big<br>output</p>
-<p>#b</p>
-<p>#big</p>
-<p>#big<br>input<br>3</p>
-<p>#book</p>
-<p>#cool</p>
-<p>#cold<br>output</p>
-<p>#book</p>
-<p>#co</p>
-<p>#cold<br>input<br>4</p>
-<p>#car</p>
-<p>#cart</p>
-<p>#art</p>
-<p>#at<br>output<br>#<br>#</p>
-<p>#art</p>
-<p>#at<br>input<br>3</p>
-<p>#apple</p>
-<p>#apple</p>
-<p>#fruit<br>output</p>
-<p>#apple</p>
-<p>#apple</p>
-<p>#fruit<br>Note<br>Word a1, a2, …, am of length m is lexicographically not greater than word b1, b2, …, bk of length k, if one of two conditions hold: </p>
-<p>at first position i, such that ai ≠ bi, the character ai goes earlier in the alphabet than character bi, i.e. a has smaller character than bin the first position where they differ;<br>if there is no such position i and m ≤ k, i.e. the first word is a prefix of the second or two words are equal.<br>The sequence of words is said to be sorted in lexicographical order if each word (except the last one) is lexicographically not greater than the next word.</p>
-<p>For the words consisting of lowercase English letters the lexicographical order coincides with the alphabet word order in the dictionary.</p>
-<p>According to the above definition, if a hashtag consisting of one character ‘#’ it is lexicographically not greater than any other valid hashtag. That’s why in the third sample we can’t keep first two hashtags unchanged and shorten the other two.</p>
-<p>题目还是比较简单的。考虑一个单词删掉得越多，在字典里面的顺序越前面。因此可以从后忘前扫，每个单词尽可能删掉最少使之小于下一个单词。当然在比赛时太依赖STL中的erase了，所以FST了。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n,len=<span class="number">0</span>;</div><div class="line"><span class="built_in">string</span> s[<span class="number">500001</span>],ans[<span class="number">500001</span>];</div><div class="line"><span class="keyword">char</span> c[<span class="number">500001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,c);</div><div class="line">        s[i].assign(c);</div><div class="line">    &#125;</div><div class="line">    ans[n]=s[n];</div><div class="line">    <span class="keyword">for</span> (i=n<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (s[i]&lt;=ans[i+<span class="number">1</span>]) </div><div class="line">        &#123;</div><div class="line">            ans[i]=s[i];</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> j,p;</div><div class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;s[i].size();j++)</div><div class="line">            <span class="keyword">if</span> (s[i][j]&gt;ans[i+<span class="number">1</span>][j])</div><div class="line">            &#123;</div><div class="line">                p=j;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        ans[i]=<span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;p;k++) ans[i]+=s[i][k];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,ans[i].c_str());</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1621,7 +1597,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
