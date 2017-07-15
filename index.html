@@ -240,6 +240,132 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/hdu5784-极角排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hnqw1214">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acmclub.win">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/15/hdu5784-极角排序/" itemprop="url">
+                  hdu5784 极角排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-15T22:07:13+08:00">
+                2017-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h1><p>Alice has n points in two-dimensional plane. She wants to know how many different acute triangles they can form. Two triangles are considered different if they differ in at least one point.</p>
+<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>The input contains multiple test cases.<br>For each test case, begin with an integer n,<br>next n lines each contains two integers xi and yi.<br>3≤n≤2000<br>0≤xi,yi≤1e9<br>Any two points will not coincide.</p>
+<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>For each test case output a line contains an integer.</p>
+<h1 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h1><p>3<br>1 1<br>2 2<br>2 3<br>3<br>1 1<br>2 3<br>3 2<br>4<br>1 1<br>3 1<br>4 1<br>2 3</p>
+<h1 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h1><p>0<br>1<br>2</p>
+<h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>给定平面内一些坐标，求锐角三角形的数量</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>极角排序，由于直接求锐角三角形的个数比较麻烦，因此考虑正难则反。先求出直角和钝角的个数和，然后再总的角的数目减去2倍直角钝角的数目再除以3<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-12</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">double</span> x,y;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">int</span> n;</div><div class="line">Point po[<span class="number">2001</span>];</div><div class="line"><span class="keyword">double</span> tmp[<span class="number">5000001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> i,j;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;po[i].x,&amp;po[i].y);</div><div class="line">        ll ans1=<span class="number">0</span>,ans2=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">int</span> cnt=<span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span> (i==j) <span class="keyword">continue</span>;</div><div class="line">                tmp[++cnt]=<span class="built_in">atan2</span>(po[j].y-po[i].y,po[j].x-po[i].x);</div><div class="line">                <span class="keyword">if</span> (tmp[cnt]&lt;<span class="number">0</span>) tmp[cnt]+=<span class="number">2</span>*pi;</div><div class="line">            &#125;</div><div class="line">            sort(tmp+<span class="number">1</span>,tmp+cnt+<span class="number">1</span>);</div><div class="line">            <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=cnt;j++)</div><div class="line">                tmp[j+cnt]=tmp[j]+<span class="number">2</span>*pi;</div><div class="line">            <span class="keyword">int</span> l=<span class="number">1</span>,r=<span class="number">1</span>,le=<span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=cnt;j++)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">while</span> (tmp[r]-tmp[j]&lt;pi&amp;&amp;r&lt;=<span class="number">2</span>*cnt) r++;</div><div class="line">                <span class="keyword">while</span> (tmp[l]-tmp[j]&lt;<span class="number">0.5</span>*pi&amp;&amp;l&lt;=<span class="number">2</span>*cnt) l++;</div><div class="line">                <span class="keyword">while</span> (tmp[le]-tmp[j]&lt;=eps&amp;&amp;le&lt;=<span class="number">2</span>*cnt) le++;</div><div class="line">                ans1+=r-l;</div><div class="line">                ans2+=l-le;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,(ans2<span class="number">-2</span>*ans1)/<span class="number">3</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/51nod-1531树上的博弈/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1393,132 +1519,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/hdu病毒侵袭/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hnqw1214">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="acmclub.win">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/03/hdu病毒侵袭/" itemprop="url">
-                  hdu病毒侵袭
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T18:56:29+08:00">
-                2017-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h1><p>当太阳的光辉逐渐被月亮遮蔽，世界失去了光明，大地迎来最黑暗的时刻。。。。在这样的时刻，人们却异常兴奋——我们能在有生之年看到500年一遇的世界奇观，那是多么幸福的事儿啊~~<br>但网路上总有那么些网站，开始借着民众的好奇心，打着介绍日食的旗号，大肆传播病毒。小t不幸成为受害者之一。小t如此生气，他决定要把世界上所有带病毒的网站都找出来。当然，谁都知道这是不可能的。小t却执意要完成这不能的任务，他说：“子子孙孙无穷匮也！”（愚公后继有人了）。<br>万事开头难，小t收集了好多病毒的特征码，又收集了一批诡异网站的源码，他想知道这些网站中哪些是有病毒的，又是带了怎样的病毒呢？顺便还想知道他到底收集了多少带病毒的网站。这时候他却不知道何从下手了。所以想请大家帮帮忙。小t又是个急性子哦，所以解决问题越快越好哦~~</p>
-<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>第一行，一个整数N（1&lt;=N&lt;=500），表示病毒特征码的个数。 接下来N行，每行表示一个病毒特征码，特征码字符串长度在20—200之间。 每个病毒都有一个编号，依此为1—N。 不同编号的病毒特征码不会相同。 在这之后一行，有一个整数M（1&lt;=M&lt;=1000），表示网站数。 接下来M行，每行表示一个网站源码，源码字符串长度在7000—10000之间。 每个网站都有一个编号，依此为1—M。 以上字符串中字符都是ASCII码可见字符（不包括回车）。</p>
-<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>依次按如下格式输出按网站编号从小到大输出，带病毒的网站编号和包含病毒编号，每行一个含毒网站信息。 web 网站编号: 病毒编号 病毒编号 … 冒号后有一个空格，病毒编号按从小到大排列，两个病毒编号之间用一个空格隔开，如果一个网站包含病毒，病毒数不会超过3个。 最后一行输出统计信息，如下格式 total: 带病毒网站数 冒号后有一个空格。</p>
-<h1 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h1><p>3<br>aaa<br>bbb<br>ccc<br>2<br>aaabbbccc<br>bbaacc</p>
-<h1 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h1><p>web 1: 1 2 3<br>total: 1</p>
-<h1 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h1><p>2009 Multi-University Training Contest 10 - Host by NIT</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>AC自动机，用end数组存下单词的id即可。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ACa</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> next[<span class="number">110000</span>][<span class="number">128</span>],fail[<span class="number">120000</span>],end[<span class="number">120000</span>];</div><div class="line">    <span class="keyword">int</span> root,len;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">newnode</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">128</span>;i++)</div><div class="line">            next[len][i]=<span class="number">-1</span>;</div><div class="line">        end[len]=<span class="number">-1</span>;</div><div class="line">        len++;</div><div class="line">        <span class="keyword">return</span> len<span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</div><div class="line">        len=<span class="number">0</span>;</div><div class="line">        root=newnode();</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> s[],<span class="keyword">int</span> num)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> ls=<span class="built_in">strlen</span>(s);</div><div class="line">        <span class="keyword">int</span> now=root;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ls;i++)&#123;</div><div class="line">            <span class="keyword">if</span>(next[now][s[i]]==<span class="number">-1</span>)</div><div class="line">              next[now][s[i]]=newnode();</div><div class="line">            now=next[now][s[i]];</div><div class="line">        &#125;</div><div class="line">        end[now]=num;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</div><div class="line">        <span class="keyword">int</span> i;</div><div class="line">        fail[root]=root;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">128</span>;i++)&#123;</div><div class="line">            <span class="keyword">if</span>(next[root][i]==<span class="number">-1</span>)</div><div class="line">                next[root][i]=root;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                fail[next[root][i]]=root;</div><div class="line">                q.push(next[root][i]);</div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!q.empty())&#123;</div><div class="line">            <span class="keyword">int</span> now=q.front();</div><div class="line">            q.pop();</div><div class="line">            <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">128</span>;i++)&#123;</div><div class="line">                <span class="keyword">if</span>(next[now][i]==<span class="number">-1</span>)</div><div class="line">                    next[now][i]=next[fail[now]][i];</div><div class="line">                <span class="keyword">else</span>&#123;</div><div class="line">                    fail[next[now][i]]=next[fail[now]][i];</div><div class="line">                    q.push(next[now][i]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">bool</span> vis[<span class="number">600</span>];</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">ask</span><span class="params">(<span class="keyword">char</span> c[],<span class="keyword">int</span> n,<span class="keyword">int</span> num)</span></span>&#123;</div><div class="line">        <span class="keyword">bool</span> flag1=<span class="literal">false</span>;</div><div class="line">        <span class="built_in">memset</span>(vis,<span class="literal">false</span>,<span class="keyword">sizeof</span>(vis));</div><div class="line">        <span class="keyword">int</span> lc=<span class="built_in">strlen</span>(c);</div><div class="line">        <span class="keyword">int</span> now=root;</div><div class="line">        <span class="keyword">int</span> i;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;lc;i++)&#123;</div><div class="line">            now=next[now][c[i]];</div><div class="line">            <span class="keyword">int</span> temp=now;</div><div class="line">            <span class="keyword">while</span>(temp!=root)&#123;</div><div class="line">                <span class="keyword">if</span>(end[temp]!=<span class="number">-1</span>)&#123;</div><div class="line">                    flag1=<span class="number">1</span>;</div><div class="line">                    vis[end[temp]]=<span class="number">1</span>; </div><div class="line">                &#125;</div><div class="line">                temp=fail[temp];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(!flag1)<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"web %d:"</span>,num);</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(vis[i])<span class="built_in">printf</span>(<span class="string">" %d"</span>,i);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">ACa ac;</div><div class="line"><span class="keyword">char</span> s[<span class="number">20000</span>];</div><div class="line"><span class="keyword">int</span> n,m;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)!=EOF)&#123;</div><div class="line">        ac.clear();</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s) , ac.insert(s,i);</div><div class="line">        ac.build();</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;m);</div><div class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</div><div class="line">            <span class="keyword">if</span>(ac.ask(s,n,i))ans++;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"total: %d\n"</span>,ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1568,7 +1568,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
