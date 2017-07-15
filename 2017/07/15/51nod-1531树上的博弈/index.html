@@ -1,0 +1,665 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="题目有一棵n个点的有根树，他有m个叶子结点（叶子结点是那些没有孩子的结点）。边由父亲指向孩子。数字1到m被分配到每一个叶子中。每一个叶子有一个数字，并且每一个数字恰好被分配到一个叶子中。刚开始的时候根部有一个棋子。两个玩家轮流移动棋子，每一步都会将这个棋子向他的某一个孩子移动；如果玩家不能再移动棋子了，那么游戏结束。游戏的结果就是棋子所在叶子上面的数字。游戏的先手想要这个数字最大化，而后手想要这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="51nod 1531树上的博弈">
+<meta property="og:url" content="http://yoursite.com/2017/07/15/51nod-1531树上的博弈/index.html">
+<meta property="og:site_name" content="acmclub.win">
+<meta property="og:description" content="题目有一棵n个点的有根树，他有m个叶子结点（叶子结点是那些没有孩子的结点）。边由父亲指向孩子。数字1到m被分配到每一个叶子中。每一个叶子有一个数字，并且每一个数字恰好被分配到一个叶子中。刚开始的时候根部有一个棋子。两个玩家轮流移动棋子，每一步都会将这个棋子向他的某一个孩子移动；如果玩家不能再移动棋子了，那么游戏结束。游戏的结果就是棋子所在叶子上面的数字。游戏的先手想要这个数字最大化，而后手想要这个">
+<meta property="og:updated_time" content="2017-07-15T14:03:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="51nod 1531树上的博弈">
+<meta name="twitter:description" content="题目有一棵n个点的有根树，他有m个叶子结点（叶子结点是那些没有孩子的结点）。边由父亲指向孩子。数字1到m被分配到每一个叶子中。每一个叶子有一个数字，并且每一个数字恰好被分配到一个叶子中。刚开始的时候根部有一个棋子。两个玩家轮流移动棋子，每一步都会将这个棋子向他的某一个孩子移动；如果玩家不能再移动棋子了，那么游戏结束。游戏的结果就是棋子所在叶子上面的数字。游戏的先手想要这个数字最大化，而后手想要这个">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/15/51nod-1531树上的博弈/"/>
+
+
+
+
+
+  <title>51nod 1531树上的博弈 | acmclub.win</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">acmclub.win</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-/"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-/archives"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/51nod-1531树上的博弈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hnqw1214">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acmclub.win">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                51nod 1531树上的博弈
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-15T22:00:18+08:00">
+                2017-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>有一棵n个点的有根树，他有m个叶子结点（叶子结点是那些没有孩子的结点）。边由父亲指向孩子。数字1到m被分配到每一个叶子中。每一个叶子有一个数字，并且每一个数字恰好被分配到一个叶子中。<br>刚开始的时候根部有一个棋子。两个玩家轮流移动棋子，每一步都会将这个棋子向他的某一个孩子移动；如果玩家不能再移动棋子了，那么游戏结束。游戏的结果就是棋子所在叶子上面的数字。游戏的先手想要这个数字最大化，而后手想要这个数字最小化。<br>山巴布里想要给这些叶子分配数字使得最终结果最大，而马族塔想要给这些叶子分配数字使得最终结果最小。那么当山巴布里来分配数字的时候游戏结果会是多少？马族塔分配的时候又是多少呢？山马布里和马族塔并不参加游戏，而是另外两个非常聪明的人来参加游戏。<br>样例解释：在这个样例中，树有三个叶子：3，4和5。如果把数字3分配给3号结点，那么第一个选手就能够让棋子到达那儿，最终结果就是3。另一方面，很明显，无论怎么分配数字，第一个选手让棋子达到最小数字是2。</p>
+<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>单组测试数据。<br>第一行有一个整数n (1≤n≤2*10^5)，表示树中结点的数目。<br>接下来n-1行，每一行两个整数ui 和 vi (1≤ui,vi≤n) ，表示树中的边，由ui指向vi。<br>输入保证是一棵有根树，而且根是1。</p>
+<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>输出两个整数表示最大值和最小值，以空格分开。</p>
+<h1 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h1><p>5<br>1 2<br>1 3<br>2 4<br>2 5</p>
+<h1 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h1><p>3 2</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>考虑最大化怎么做。<br>假设我的答案是ans，设f[i]表示i子树内需要至少安置多少个&gt;=ans才能使在这个节点往后操作一定能使答案为ans。<br>显然i是先手操作就对每颗子树的f取min，否则求和。<br>显然m-f[1]是最大答案。<br>最小化同理。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n,m=<span class="number">0</span>;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a[<span class="number">200001</span>];</div><div class="line"><span class="keyword">int</span> d[<span class="number">200001</span>],f[<span class="number">200001</span>];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> rt)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> (a[rt].size()==<span class="number">0</span>)</div><div class="line">	&#123;</div><div class="line">		m++;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> u:a[rt])</div><div class="line">	&#123;</div><div class="line">		d[u]=d[rt]+<span class="number">1</span>;</div><div class="line">		dfs(u);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">do1</span><span class="params">(<span class="keyword">int</span> rt)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> (a[rt].size()==<span class="number">0</span>)</div><div class="line">	&#123;</div><div class="line">		f[rt]=<span class="number">1</span>;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (d[rt]&amp;<span class="number">1</span>)</div><div class="line">	&#123;</div><div class="line">		f[rt]=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> u:a[rt])</div><div class="line">		&#123;</div><div class="line">			do1(u);</div><div class="line">			f[rt]+=f[u];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		f[rt]=m+<span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> u:a[rt])</div><div class="line">		&#123;</div><div class="line">			do1(u);</div><div class="line">			f[rt]=min(f[rt],f[u]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">do2</span><span class="params">(<span class="keyword">int</span> rt)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> (a[rt].size()==<span class="number">0</span>)</div><div class="line">	&#123;</div><div class="line">		f[rt]=<span class="number">1</span>;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> ((d[rt]&amp;<span class="number">1</span>)==<span class="number">0</span>)</div><div class="line">	&#123;</div><div class="line">		f[rt]=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> u:a[rt])</div><div class="line">		&#123;</div><div class="line">			do2(u);</div><div class="line">			f[rt]+=f[u];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		f[rt]=m+<span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> u:a[rt])</div><div class="line">		&#123;</div><div class="line">			do2(u);</div><div class="line">			f[rt]=min(f[rt],f[u]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">	<span class="keyword">int</span> i;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;n;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> x,y;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</div><div class="line">		a[x].push_back(y);</div><div class="line">	&#125;</div><div class="line">	dfs(<span class="number">1</span>);</div><div class="line">	<span class="comment">//cout&lt;&lt;m&lt;&lt;endl;</span></div><div class="line">	do1(<span class="number">1</span>);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d "</span>,m-f[<span class="number">1</span>]+<span class="number">1</span>);</div><div class="line">	<span class="comment">//memset(f,0,sizeof(f));</span></div><div class="line">	do2(<span class="number">1</span>);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,f[<span class="number">1</span>]);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/10/51nod-1513-codeforces-570D-树上的回文/" rel="next" title="51nod 1513&codeforces 570D 树上的回文">
+                <i class="fa fa-chevron-left"></i> 51nod 1513&codeforces 570D 树上的回文
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/8E9212F83525E2181D28AA0DBE0BF1D7.jpg"
+               alt="hnqw1214" />
+          <p class="site-author-name" itemprop="name">hnqw1214</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input示例"><span class="nav-number">4.</span> <span class="nav-text">Input示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output示例"><span class="nav-number">5.</span> <span class="nav-text">Output示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">6.</span> <span class="nav-text">思路</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hnqw1214</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
