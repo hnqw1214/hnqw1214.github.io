@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="ProblemVasily has a deck of cards consisting of n cards. There is an integer on each of the cards, this integer is between 1 and 100 000, inclusive. It is possible that some cards have the same intege">
+<meta name="description" content="ProblemVladimir wants to modernize partitions in his office. To make the office more comfortable he decided to remove a partition and plant several bamboos in a row. He thinks it would be nice if ther">
 <meta property="og:type" content="article">
-<meta property="og:title" content="codeforces 831E（思维题）">
-<meta property="og:url" content="http://yoursite.com/2017/07/17/codeforces-831E（思维题）/index.html">
+<meta property="og:title" content="codeforces 830C(分段枚举答案)">
+<meta property="og:url" content="http://yoursite.com/2017/07/17/codeforces-830C-分段枚举答案/index.html">
 <meta property="og:site_name" content="acmclub.win">
-<meta property="og:description" content="ProblemVasily has a deck of cards consisting of n cards. There is an integer on each of the cards, this integer is between 1 and 100 000, inclusive. It is possible that some cards have the same intege">
-<meta property="og:updated_time" content="2017-07-17T15:14:47.000Z">
+<meta property="og:description" content="ProblemVladimir wants to modernize partitions in his office. To make the office more comfortable he decided to remove a partition and plant several bamboos in a row. He thinks it would be nice if ther">
+<meta property="og:updated_time" content="2017-07-17T15:22:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="codeforces 831E（思维题）">
-<meta name="twitter:description" content="ProblemVasily has a deck of cards consisting of n cards. There is an integer on each of the cards, this integer is between 1 and 100 000, inclusive. It is possible that some cards have the same intege">
+<meta name="twitter:title" content="codeforces 830C(分段枚举答案)">
+<meta name="twitter:description" content="ProblemVladimir wants to modernize partitions in his office. To make the office more comfortable he decided to remove a partition and plant several bamboos in a row. He thinks it would be nice if ther">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/17/codeforces-831E（思维题）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/17/codeforces-830C-分段枚举答案/"/>
 
 
 
 
 
-  <title>codeforces 831E（思维题） | acmclub.win</title>
+  <title>codeforces 830C(分段枚举答案) | acmclub.win</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +242,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/codeforces-831E（思维题）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/codeforces-830C-分段枚举答案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hnqw1214">
@@ -263,7 +263,7 @@
             
             
               
-                codeforces 831E（思维题）
+                codeforces 830C(分段枚举答案)
               
             
           </h1>
@@ -278,7 +278,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T22:58:45+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T23:17:26+08:00">
                 2017-07-17
               </time>
             
@@ -313,15 +313,16 @@
       
 
       
-        <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>Vasily has a deck of cards consisting of n cards. There is an integer on each of the cards, this integer is between 1 and 100 000, inclusive. It is possible that some cards have the same integers on them.</p>
-<p>Vasily decided to sort the cards. To do this, he repeatedly takes the top card from the deck, and if the number on it equals the minimum number written on the cards in the deck, then he places the card away. Otherwise, he puts it under the deck and takes the next card from the top, and so on. The process ends as soon as there are no cards in the deck. You can assume that Vasily always knows the minimum number written on some card in the remaining deck, but doesn’t know where this card (or these cards) is.</p>
-<p>You are to determine the total number of times Vasily takes the top card from the deck.</p>
-<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>The first line contains single integer n (1 ≤ n ≤ 100 000) — the number of cards in the deck.</p>
-<p>The second line contains a sequence of n integers a1, a2, …, an (1 ≤ ai ≤ 100 000), where ai is the number written on the i-th from top card in the deck.</p>
-<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>Print the total number of times Vasily takes the top card from the deck.</p>
-<h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1><p>input<br>4<br>6 3 1 2<br>output<br>7<br>input<br>1<br>1000<br>output<br>1<br>input<br>7<br>3 3 3 3 3 3 3<br>output<br>7</p>
-<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>In the first example Vasily at first looks at the card with number 6 on it, puts it under the deck, then on the card with number 3, puts it under the deck, and then on the card with number 1. He places away the card with 1, because the number written on it is the minimum among the remaining cards. After that the cards from top to bottom are [2, 6, 3]. Then Vasily looks at the top card with number 2 and puts it away. After that the cards from top to bottom are [6, 3]. Then Vasily looks at card 6, puts it under the deck, then at card 3 and puts it away. Then there is only one card with number 6 on it, and Vasily looks at it and puts it away. Thus, in total Vasily looks at 7 cards.</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>考虑一张牌的操作有2类，一类是处理在这张牌之上比这张牌小的牌，一类是处理掉这张牌。因此可以考虑先预处理出所有号码的牌出现的位置，然后从最小的号码开始，找到它出现的最后的位置，用的次数为 (dis)，那么 i 后面的数字 i+1(假设存在) 就被p分为两段(二分)，在p之后的，和p之前的,在p之后的数要处理dis次，在p之前的需要dis+1次，依次从小到大扫描每个数得到正确答案。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">int</span> n,a[<span class="number">100001</span>];</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vc[<span class="number">100001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">	<span class="keyword">int</span> i,maxn=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]),maxn=max(maxn,a[i]);</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		vc[a[i]].push_back(i);</div><div class="line">	<span class="keyword">int</span> pos=<span class="number">1</span>;</div><div class="line">	ll ans=<span class="number">0</span>;</div><div class="line">	<span class="keyword">int</span> dis=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=maxn;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span> (vc[i].empty()) <span class="keyword">continue</span>;</div><div class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter;</div><div class="line">		iter=lower_bound(vc[i].begin(),vc[i].end(),pos);</div><div class="line">		ans+=<span class="number">1l</span>l*dis*(vc[i].end()-iter);</div><div class="line">		pos=*vc[i].rbegin();</div><div class="line">		vc[i].erase(iter,vc[i].end());</div><div class="line">		<span class="keyword">if</span> (!vc[i].empty())</div><div class="line">		&#123;</div><div class="line">			pos=<span class="number">1</span>;</div><div class="line">			dis++;</div><div class="line">			i--;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>Vladimir wants to modernize partitions in his office. To make the office more comfortable he decided to remove a partition and plant several bamboos in a row. He thinks it would be nice if there are n bamboos in a row, and the i-th from the left is ai meters high.</p>
+<p>Vladimir has just planted n bamboos in a row, each of which has height 0 meters right now, but they grow 1 meter each day. In order to make the partition nice Vladimir can cut each bamboo once at any height (no greater that the height of the bamboo), and then the bamboo will stop growing.</p>
+<p>Vladimir wants to check the bamboos each d days (i.e. d days after he planted, then after 2d days and so on), and cut the bamboos that reached the required height. Vladimir wants the total length of bamboo parts he will cut off to be no greater than k meters.</p>
+<p>What is the maximum value d he can choose so that he can achieve what he wants without cutting off more than k meters of bamboo?</p>
+<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>parts, in meters.</p>
+<p>The second line contains n integers a1, a2, …, an (1 ≤ ai ≤ 109) — the required heights of bamboos, in meters.</p>
+<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>Print a single integer — the maximum value of d such that Vladimir can reach his goal.</p>
+<h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1><p>input<br>3 4<br>1 3 5<br>output<br>3<br>input<br>3 40<br>10 30 50<br>output<br>32</p>
+<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>In the first example Vladimir can check bamboos each 3 days. Then he will cut the first and the second bamboos after 3 days, and the third bamboo after 6 days. The total length of cut parts is 2 + 0 + 1 = 3 meters.</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>首先我们需要知道什么样的d是满足的.对于任意的 i ，∑[a[i]+d−1d]−a[i]≤k，因此<br>d≤k+∑a[i]，注意条件项中的 [a[i]+d−1d] 在这中由于 d 只有 a[i]‾‾‾‾√ 种可能，因此，可以分段枚举d<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line">ll n,k,a[<span class="number">101</span>];</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ok</span><span class="params">(ll d)</span></span></div><div class="line">&#123;</div><div class="line">	ll ret=<span class="number">0</span>;</div><div class="line">	<span class="keyword">int</span> i;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		ret+=(a[i]<span class="number">-1</span>+d)/d;</div><div class="line">	<span class="keyword">return</span> ret*d&lt;=k;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;k);</div><div class="line">	ll i;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;a[i]);</div><div class="line">		k+=a[i];</div><div class="line">	&#125;</div><div class="line">	ll ans=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="built_in">sqrt</span>(k)+<span class="number">1</span>;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span> (ok(i)) ans=max(ans,i);</div><div class="line">		<span class="keyword">if</span> (ok(k/i)) ans=max(ans,k/i);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -358,8 +359,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/15/K-wolf-Number（数位dp/" rel="next" title="K-wolf Number（数位dp)">
-                <i class="fa fa-chevron-left"></i> K-wolf Number（数位dp)
+              <a href="/2017/07/17/codeforces-831E（思维题）/" rel="next" title="codeforces 831E（思维题）">
+                <i class="fa fa-chevron-left"></i> codeforces 831E（思维题）
               </a>
             
           </div>
@@ -367,10 +368,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/17/codeforces-830C-分段枚举答案/" rel="prev" title="codeforces 830C(分段枚举答案)">
-                codeforces 830C(分段枚举答案) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
